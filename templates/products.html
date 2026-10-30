@@ -1,0 +1,29 @@
+{% load i18n %}
+{% load static %}
+
+
+{% block content %}
+{% get_current_language as LANGUAGE_CODE %}
+
+  {% if LANGUAGE_CODE  == "en" %}
+    <a class="news_titulo"  href="{% url "shop:product_list_by_category" category_slug="vapes" %}">
+      <h1 class="blog_titulo"> All the vapers </h1>
+    </a>
+  {% else %}
+      <a class="news_titulo" href="{% url "shop:product_list_by_category" category_slug="vapeadores" %}">
+        <h1 class="blog_titulo">Todos los vapeadores</h1>
+      </a>
+  {% endif %}
+<div id="main-news" class="product-list-news">
+  {% for product in products_vapes %}
+  <div class="item-news">
+    <a href="{{ product.get_absolute_url }}">
+      <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+    </a>
+    <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+    <br>
+      ${{ product.price }} USD 
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

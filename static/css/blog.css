@@ -1,0 +1,243 @@
+:root{
+    --main-bg-color:  tomato;
+}
+
+body { 
+    margin:0;
+    padding:0;
+    font-family:helvetica, sans-serif;
+}
+
+
+a {
+    text-decoration:none;
+    color: black;
+}
+
+a:hover {
+  color:  var(--main-bg-color);;
+}
+
+h1 { 
+    font-weight:normal;
+    border-bottom:1px solid #bbb;
+    padding:0 0 10px 0;
+}
+
+h2 {
+    font-weight:normal;
+    margin:30px 0 0;
+}
+
+#content { 
+    float:left;
+    width:60%;
+    padding:0 0 0 30px; 
+}
+
+#sidebar { 
+    float:right;
+    width:30%;
+    padding:10px;
+    background:#efefef; 
+    height:100%;
+}
+
+p.date { 
+    color: grey;
+    font-family: georgia, serif;
+    font-size: 12px;
+    font-style: italic; 
+}
+
+/* pagination */
+.pagination { 
+    margin:40px 0; 
+    font-weight:bold;
+}
+
+/* forms */
+label { 
+    float:left;
+    clear:both;
+    color:#333;
+    margin-bottom:4px; 
+}
+input, textarea { 
+    clear:both;
+    float:left;
+    margin:0 0 10px;
+    background:#ededed;
+    border:0;
+    padding:6px 10px;
+    font-size:12px;
+}
+input[type=submit] {
+    font-weight:bold;
+    background:#00abff;
+    color:#fff;
+    padding:10px 20px;
+    font-size:14px;
+    text-transform:uppercase; 
+}
+.errorlist { 
+    color:#cc0033;
+    float:left;
+    clear:both;
+    padding-left:10px; 
+}
+
+/* comments */
+.comment {
+    padding:10px;
+}
+.comment:nth-child(even) {
+    background:#efefef;
+}
+.comment .info {
+    font-weight:bold;
+    font-size:12px;
+    color:#666;
+}
+
+article {
+  --img-scale: 1.001;
+  --title-color: black;
+  --link-icon-translate: -20px;
+  --link-icon-opacity: 0;
+  position: relative;
+  border-radius: 16px;
+  box-shadow: none;
+  background: #fff;
+  transform-origin: center;
+  transition: all 0.4s ease-in-out;
+  overflow: hidden;
+  box-shadow: 2px 2px 8px 4px #d3d3d3d1;
+}
+
+
+article h2 a::after {
+  position: absolute;
+  inset-block: 0;
+  inset-inline: 0;
+  cursor: pointer;
+  content: "";
+}
+
+article h2 {
+  margin: 0 0 18px 0;
+  font-family: "Bebas Neue", cursive;
+  font-size: 1.9rem;
+  letter-spacing: 0.06em;
+  color: var(--title-color);
+  transition: color 0.3s ease-out;
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+article img {
+  max-width: 100%;
+  transform-origin: center;
+  transform: scale(var(--img-scale));
+  transition: transform 0.4s ease-in-out;
+}
+
+
+.article-body {
+  padding: 24px;
+}
+
+article:has(:hover, :focus) {
+  --img-scale: 1.1;
+  --title-color: #28666e;
+  --link-icon-translate: 0;
+  --link-icon-opacity: 1;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.articles {
+  display: grid;
+  margin-inline: auto;
+  padding-inline: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+/*
+.articles .tarjeta img {
+    width:40%;
+    margin-bottom:8px;
+}
+*/
+
+
+#header {
+    max-width: 1200px;
+    max-height: 65px;
+    padding: 10px 0;
+    font-size: 18px;
+    overflow: auto;
+    margin: auto;
+}
+
+#subheader {
+    background:#ececec;
+    color:#444;
+    padding:15px 100px;
+    overflow:auto;
+}
+
+#header .logo {
+    font-family: 'Ubuntu', sans-serif;
+    float:left;
+    color:#333;
+    font-size:22px;
+    margin-right:10%;
+}
+
+#header ul.menu {
+    list-style:none;
+    float:left;
+    margin:0;
+    padding:0;
+}
+
+#header ul.menu li {
+    float:left;
+    padding:4px 10px;
+}
+
+#subheader .cart {
+    float:right;
+    padding-top:4px;
+}
+
+#header .user {
+    float:right;
+}
+
+#header .nav_car {
+    float: right;
+}
+
+#header .nav_car .nav_i{
+  display: flex;
+  align-items: center;
+}
+
+.tags a{
+  color: var(--main-bg-color);
+}
+
+.link_color{
+  color: var(--main-bg-color);
+}
+
+.link_color:hover{
+    color:#77b6e2;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>React Button en Django</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <h1>Botón React en Django</h1>
+    <div id="react-button"></div>
+
+    <!-- Cargar React y ReactDOM -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+    <!-- Cargar el archivo generado por Vite -->
+    <script src="{% static 'button.umd.js' %}"></script>
+
+    <script>
+      // Asegurarse de que el DOM está listo antes de renderizar el componente
+      document.addEventListener('DOMContentLoaded', function () {
+        const et = React.createElement;
+        // Asegúrate de que el componente Button está disponible globalmente
+        if (typeof Button !== 'undefined') {
+          ReactDOM.render(
+            et(Button, { label: 'Botón React', variant: 'primary', size: 'medium' }),
+            document.getElementById('react-button')
+          );
+        } else {
+          console.error('Button is not defined');
+        }
+      });
+    </script>
+</body>
+</html>
+

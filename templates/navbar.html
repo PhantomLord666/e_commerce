@@ -1,0 +1,109 @@
+{% load i18n %}
+{% load static %}
+        <div id="header">
+          <a href="{% url "shop:product_list" %}" class="logo">
+            <img class="logo_alien" src="{% static "img/logo_1.png" %}"></a>
+            {% get_current_language as LANGUAGE_CODE %}
+            {% get_available_languages as LANGUAGES %}
+            {% get_language_info_list for LANGUAGES as languages %}
+                <ul class="menu"> 
+                    {% if LANGUAGE_CODE  == "en" %}
+                       <li {% if section == "dashboard" %}class="selected"{% endif %}>
+                          <a href="{% url "shop:product_list_by_category" category_slug="pods" %}">Pods</a>
+                      </li>
+                      <li {% if section == "images" %}class="selected"{% endif %}>
+                          <a href="{% url "shop:product_list_by_category" category_slug="vapes" %}">Vapes</a>
+                      </li>
+                      <li {% if section == "people" %}class="selected"{% endif %}>
+                          <a href="{% url "shop:product_list_by_category" category_slug="e-juice" %}">E-juice</a>
+                      </li> 
+                    {% else %}
+                        <li {% if section == "dashboard" %}class="selected"{% endif %}>
+                          <a href="{% url "shop:product_list_by_category" category_slug="podes" %}">Pods</a>
+                      </li>
+                      <li {% if section == "images" %}class="selected"{% endif %}>
+                          <a href="{% url "shop:product_list_by_category" category_slug="vapeadores" %}">Vapes</a>
+                      </li>
+                      <li {% if section == "people" %}class="selected"{% endif %}>
+                          <a href="{% url "shop:product_list_by_category" category_slug="liquidos" %}">E-juice</a>
+                      </li> 
+                    {% endif %}
+                                       <li {% if section == "people" %}class="selected"{% endif %}>
+                        <a href="{% url "blog:post_list" %}">Blog</a>
+                    </li>
+                     <li {% if section == "people" %}class="selected"{% endif %}>
+                        <a href="{% url "shop:product_news" %}">New</a>
+                    </li>
+                    <li {% if section == "people" %}class="selected"{% endif %}>
+                            <a href="{% url "shop:product_search" %}">
+                            <i class="material-icons">search</i>
+                        </a>
+                    </li>
+                </ul>
+          <span class="languages">
+                                  {% if LANGUAGE_CODE == "en" %}
+                        <a href="/{{ "es" }}/">
+                          <span class="flag-icon flag-icon-mx flag-icon-squared"></span>
+                        </a>  
+                      {% else %}
+                        <a href="/{{ "en" }}/">
+                          <span class="flag-icon flag-icon-us flag-icon-squared"></span>
+                        </a>  
+                      {% endif %}
+                       </span>
+
+          <span class="nav_car">  
+            {% with total_items=cart|length %}
+                    {% if total_items > 0 %}
+                        <a class="nav_i"  href="{% url "cart:cart_detail" %}">
+                        <i class="material-icons">shopping_cart</i>
+                          {% blocktrans with total=cart.get_total_price count items=total_items %}
+                            <i >{{ items }}</i> 
+                          {% plural %}
+                            <i >{{ items }}</i> 
+                          {% endblocktrans %}
+                          </a>
+                    {% elif not order %}
+                      <div class="nav_i">
+                        <i class="material-icons">shopping_cart</i> <i>0</i>
+                      </div>
+                    {% endif %}
+                {% endwith %}
+          </span>
+
+            <span class="user">
+                {% if request.user.is_authenticated %}
+                    <!--Hello {{ request.user.first_name|default:request.user.username }},
+                    <a href="{% url "logout" %}">Log-out</a>
+                    <form id="logout-form" action="{% url "logout" %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit">Log out</button>
+</form>-->
+                    <a href="{% url "dashboard" %}">
+                      MI CUENTA 
+                    </a>
+                {% else %}
+                    <a href="{% url "login" %}">
+                      <i class="material-icons">person</i>
+                    </a>
+                {% endif %}
+            </span>
+                    </div>
+       <!-- <div id="subheader">
+            <div class="cart">
+                {% with total_items=cart|length %}
+                    {% if total_items > 0 %}
+                        {% trans "Your cart" %}:
+                        <a href="{% url "cart:cart_detail" %}">
+                          {% blocktrans with total=cart.get_total_price count items=total_items %}
+                            {{ items }} item, ${{ total }}
+                          {% plural %}
+                            {{ items }} items, ${{ total }}
+                          {% endblocktrans %}                        </a>
+                    {% elif not order %}
+                      {% trans "Your cart is empty." %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+-->

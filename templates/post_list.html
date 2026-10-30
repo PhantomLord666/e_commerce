@@ -1,0 +1,42 @@
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+  <a  class="news_titulo" href="{% url "blog:post_list" %}">
+    <h1 class="blog_titulo">{% trans "My Blog" %}</h1>
+  </a>
+  {% if tag %}
+    <h2>Posts tagged with "{{ tag.name }}"</h2>
+  {% endif %}
+  <div class="articles">
+  {% for post in posts %}
+  <article>
+  <div class="tarjeta">
+      <figure>
+      <img src="{% if post.image %}{{ post.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+    </figure>
+      <div class="article-body">
+      <h2>
+      <a href="{{ post.get_absolute_url }}">
+        {{ post.title }}
+      </a>
+    </h2>
+    {{ post.description }}
+    <p class="tags">
+      Tags:
+        {% for tag in post.tags.all %}
+          <a href="{% url "blog:post_list_by_tag" tag.slug %}">
+            {{ tag.name }}
+          </a>
+          {% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </p> 
+    <p class="date">
+      Published {{ post.publish }} by {{ post.author }}
+    </p>
+    </div>
+  </div>
+  </article>
+  {% endfor %}
+  </div>
+{% endblock %}
